@@ -1,0 +1,90 @@
+body {
+  margin-bottom: 20px;
+}
+h1, h3, h4{
+  text-align: center;
+}
+h2 {
+  color: #888888;
+  margin-top: 60px;
+  padding-left: 20px;
+}
+
+section > div:first-of-type {
+  border-right: 1px solid #CCC;
+}
+
+.CodeMirror {
+  text-align: left;
+}
+
+#example-1 .draggers,
+#example-2 {
+  text-align: center;
+}
+
+.draggie,
+.droppers .drop-spot {
+  z-index: 20;
+  margin: 10px 10px 0 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 3px;
+  text-align: center;
+  display: inline-block;
+  font-size: 82px;
+  cursor: pointer;
+}
+
+#example-1 .draggie {
+  background: #10621E;
+  color: #82C38D;
+  padding: 11px 0 0 9px;
+}
+#example-1 .drop-spot {
+  text-align: center;
+  font-size: 24px;
+  background: #82C38D;
+  border: 1px solid #51A35F;
+  border-radius: 3px;
+  color: #10621E;
+}
+#example-1 .drop-spot.highlight {
+  background: #D46F6A; 
+  color:#801A15;
+  border-color: #550400;
+}
+
+#example-2 .draggers {
+  position: relative;
+  overflow:hidden;
+  border: 1px solid #CCCCCC;
+  padding-bottom: 10px;
+}
+
+#example-2 .draggie {
+  background: #7788AA;
+  color: #2D4471;
+  padding: 7px 0 0 3px;
+}
+#example-2 .draggie.is-dragging {
+  z-index: 22;
+}
+
+#example-2 .droppers {
+  width: 100%;
+  height: 100%;
+  z-index: 21;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background: #888;
+}
+#example-2 .droppers.animated {
+  -webkit-animation-duration: .5s;
+          animation-duration: .5s;
+}
+
+#example-2 .drop-spot.highlight {
+  background: #AAA;
+}

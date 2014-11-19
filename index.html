@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Draggabilly Plus Drop</title>
+
+    <!-- Bootstrap -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/codemirror.css" rel="stylesheet">
+    <link href="assets/css/animate.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.min.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="assets/js/modernizr.custom.js"></script>
+  </head>
+  <body>
+    <h1>Draggabilly Plus Drop Demo</h1>
+    <h3><a href="http://draggabilly.desandro.com/" target="_blank">Draggabilly</a></h3>
+    <h4><a href="http://tympanus.net/codrops/2014/11/11/drag-and-drop-interaction-ideas/" target="_blank">Based on this demo by codrops</a></h4>
+    
+    <h2>Drag and Drop Delete</h2>
+    <section id="example-1" class="container row">
+      <div class="col-xs-6">
+        <div class="container col-xs-12">
+	  <div class="row delete-draggie">
+            <div class="col-xs-12 drop-spot">Delete</div>
+	  </div><!-- .delete-draggie -->
+	  <div class="row draggers">
+            <div class="draggie"><span class="glyphicon glyphicon-floppy-disk"></span></div>
+            <div class="draggie"><span class="glyphicon glyphicon-floppy-disk"></span></div>
+            <div class="draggie"><span class="glyphicon glyphicon-floppy-disk"></span></div>
+            <div class="draggie"><span class="glyphicon glyphicon-floppy-disk"></span></div>
+            <div class="draggie"><span class="glyphicon glyphicon-floppy-disk"></span></div>
+            <div class="draggie"><span class="glyphicon glyphicon-floppy-disk"></span></div>
+	  </div>
+	</div><!-- .draggers -->
+      </div>
+      <div class="col-xs-6">
+        <textarea id="example-1-code">
+  //Select the droppable area in the DOM
+  var deleteDropSpot = $('.delete-draggie .drop-spot')[0];
+  //This creates the doppable area
+  var deleteDroppable = new Droppable(deleteDropSpot,{
+       onDrop: function(instance, draggie) {
+	 $(draggie).remove();
+       }
+     }
+  );
+  //Initialize the draggable divs with the above droppable area
+  $('#example-1 .draggie').each(function(){
+     new Draggable(this, [deleteDroppable],{});
+  });
+	</textarea>
+      </div>
+    </section>
+
+    <h2>Drag and Drop Slide Up</h2>
+    <section id="example-2" class="container row">
+      <div class="draggers col-xs-6">
+         <div class="draggie"><span class="glyphicon glyphicon-picture"></span></div>
+         <div class="draggie"><span class="glyphicon glyphicon-picture"></span></div>
+         <div class="draggie"><span class="glyphicon glyphicon-picture"></span></div>
+         <div class="draggie"><span class="glyphicon glyphicon-picture"></span></div>
+         <div class="draggie"><span class="glyphicon glyphicon-picture"></span></div>
+         <div class="draggie"><span class="glyphicon glyphicon-picture"></span></div>
+	 <div class="droppers hide">
+           <div class="drop-spot"><span class="glyphicon glyphicon-edit"></span></div>
+           <div class="drop-spot"><span class="glyphicon glyphicon-print"></span></div>
+           <div class="drop-spot"><span class="glyphicon glyphicon-upload"></span></div>
+	 </div>
+      </div>
+      <div class="col-xs-6">
+        <textarea id="example-2-code">
+  var dropSpots = [];
+  //Find each of the DOM elements for drop areas
+  $('#example-2 .drop-spot').each(function(){
+     dropSpots.push(new Droppable(this,{}));
+  });
+  //Initialize the draggable divs with the above drop areas
+  $('#example-2 .draggie').each(function(){
+     new Draggable(this, dropSpots,{
+       onStart : function() {
+         //Open the sliding drop areas
+         var d = $('#example-2 .droppers');
+	     d.removeClass('hide')
+	      .addClass('animated fadeInUp');
+       },
+       onEnd : function(wasDropped) {
+         var dropAreaTimeout;
+	 //Cloase the drop area.
+	 var afterDrop = function(){
+           var d = $('#example-2 .droppers');
+	       d.addClass('hide')
+	        .removeClass('animated fadeInUp');
+         };
+	 //Check to see if the draggable was dropped.
+         if(!wasDropped) {
+	   afterDrop();
+          } else {
+	   clearTimeout( dropAreaTimeout );
+   	   dropAreaTimeout = setTimeout( afterDrop, 400 );
+         }
+       }
+     });
+  });
+	</textarea>
+      </div>
+    </section>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="assets/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/codemirror.js"></script>
+    <script src="assets/js/mode/javascript.js"></script>
+    <script src="assets/js/draggabilly.pkgd.min.js"></script>
+    <script src="assets/js/dragdrop.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
