@@ -1,4 +1,5 @@
-animate-demo
+draggabilly-demo
 ============
+This is a simple and quick demo for drag and drop interfaces using draggabilly.
 
-A demo of something simple for animate.css
+http://code.atmosol.com/~bknox/draggabilly-demo/
